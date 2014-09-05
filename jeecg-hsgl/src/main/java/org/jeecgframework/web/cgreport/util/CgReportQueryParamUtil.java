@@ -30,7 +30,7 @@ public class CgReportQueryParamUtil extends  org.jeecgframework.web.cgform.util.
 	public static void loadQueryParams(HttpServletRequest request, Map item, Map params) {
 		String filedName = (String) item.get(CgReportConstant.ITEM_FIELDNAME);
 		String queryMode = (String) item.get(CgReportConstant.ITEM_QUERYMODE);
-		String filedType = (String) item.get(CgReportConstant.ITEM_FIELDTYPE);
+		String filedType = (String) item.get(CgReportConstant.ITEM_FIELDTYPE); 
 		if("single".equals(queryMode)){
 			//单条件组装方式
 			String value =request.getParameter(filedName);
@@ -40,7 +40,7 @@ public class CgReportQueryParamUtil extends  org.jeecgframework.web.cgform.util.
 				}
 				String uri = request.getQueryString();
 				if(uri.contains(filedName+"=")){
-					String contiansChinesevalue = new String(value.getBytes("ISO-8859-1"), "UTF-8");
+					String contiansChinesevalue = new String(value.getBytes("UTF-8"), "UTF-8");
 					value = contiansChinesevalue;
 				}
 			} catch (UnsupportedEncodingException e) {
