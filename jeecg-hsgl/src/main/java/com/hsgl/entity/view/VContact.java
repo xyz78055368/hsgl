@@ -4,10 +4,13 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "v_Contact", schema = "")
@@ -16,6 +19,9 @@ import org.hibernate.annotations.DynamicUpdate;
 @SuppressWarnings("serial")
 public class VContact implements Serializable {
 	
+	@Id
+	@GeneratedValue(generator = "paymentableGenerator")
+	@GenericGenerator(name = "paymentableGenerator", strategy = "uuid")
 	@Column(name="id")
 	private String id;
 	@Column(name="name")
