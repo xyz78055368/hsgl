@@ -19,6 +19,10 @@
 		<context:exclude-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
+	<context:component-scan base-package="com.hsgl.*">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
 
 	<!-- 引入属性文件 -->
 	<context:property-placeholder location="classpath:dbconfig.properties" />
@@ -101,6 +105,7 @@
 				<value>org.jeecgframework.web.test.entity.*</value>
 				<value>org.jeecgframework.web.cgform.entity.*</value>
 				<value>org.jeecgframework.web.cgreport.entity.*</value>
+				<value>com.hsgl.entity.*</value>
 			</list>
 		</property>
 	</bean>
