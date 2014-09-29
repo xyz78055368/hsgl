@@ -18,7 +18,7 @@
 		<context:exclude-filter type="annotation"
 			expression="org.springframework.stereotype.Service" />
 	</context:component-scan>
-
+	
 	<!-- ApplicationContext -->
 	<bean class="org.jeecgframework.core.util.ApplicationContextUtil"></bean>
 
@@ -94,15 +94,13 @@
 			</props>
 		</property>
 	</bean>
-	<!-- 
-	<bean id="smsClient" class="cn.emay.sdk.client.api.Client">
-	    <property name="serialNumber">${sms.key}</property>
-	    <property name="serialPassword">${sms.password}</property>
+
+	<bean id="sMSServiceI" class="com.hsgl.service.impl.SMSServiceImpl">
+	    <property name="softwareSerialNo">
+	        <value>3SDK-BHC-0130-LIXUP</value>
+	    </property>
 	</bean>
-	<bean id="smsService" class="com.hsgl.service.impl.SMSServiceImpl">
-	    <property name="client" ref="smsClient"></property>
-	</bean>
-	 -->
+	
 	<!-- 拦截器 -->
 	<mvc:interceptors>
 		<mvc:interceptor>

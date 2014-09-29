@@ -8,12 +8,27 @@ import cn.emay.sdk.client.api.Client;
 
 import com.hsgl.service.SMSServiceI;
 
-@Service
+@Service("sMSServiceI")
 public class SMSServiceImpl implements SMSServiceI {
 
 	private static Client client=null;
+	private String softwareSerialNo;
+	private static String key = "K#jjdk#*&dj_DLL";
 
-	public synchronized static Client getClient(String softwareSerialNo,String key){
+	public String getSoftwareSerialNo() {
+		return softwareSerialNo;
+	}
+
+	public void setSoftwareSerialNo(String softwareSerialNo) {
+		this.softwareSerialNo = softwareSerialNo;
+	}
+
+	public String getKey() {
+		return key;
+	}
+
+	@Override
+	public Client getClient(String softwareSerialNo,String key){
 		if(client==null){
 			try {
 				client=new Client(softwareSerialNo,key);
@@ -25,13 +40,27 @@ public class SMSServiceImpl implements SMSServiceI {
 	}
 
 	
-	public void sendSMS(List<String> telList,String sendContent) {
+	public String sendSMS(List<String> telList,String sendContent) {
 		String[] mobiles = (String[])(telList.toArray()); 
-		
-		int res = client.sendSMS(mobiles, sendContent, 5);
-		if(res == 1){
-			System.out.println("发送成功");
+		getClient( softwareSerialNo, key);
+		String msg = "";
+		int res = client.sendSMS(mobiles, "【徽商故里】"+sendContent, 5);
+		if(res == 0){
+		 	msg = "发送成功";
+		}else{
+			msg = "发送失败,返回码:" + res;
 		}
+		return msg;
+	}
+
+	@Override
+	public double getBalance() {
+		try {
+			getClient( softwareSerialNo, key);
+			return client.getBalance();
+		} catch (Exception e) {
+		}
+		return -1;
 	}
 
 }

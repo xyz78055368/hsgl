@@ -173,7 +173,7 @@ version="3.1">
 
 	<!-- session超时设置30分钟 add by zhoujunfeng 20130830 -->
 	<session-config>
-		<session-timeout>30</session-timeout>
+		<session-timeout>3000</session-timeout>
 	</session-config>
 	<!-- session超时设置30分钟 add by zhoujunfeng 20130830 -->
 	<welcome-file-list>
